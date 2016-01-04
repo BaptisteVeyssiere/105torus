@@ -5,8 +5,10 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Mon Jan  4 14:56:13 2016 nathan scutari
-** Last update Mon Jan  4 15:15:53 2016 nathan scutari
+** Last update Mon Jan  4 15:28:40 2016 Baptiste veyssiere
 */
+
+#include <stdio.h>
 
 void	my_put_double(double nbr, int dec)
 {
@@ -17,6 +19,7 @@ void	my_put_double(double nbr, int dec)
   int_nbr = (int)nbr;
   my_put_nbr(int_nbr);
   nbr -= int_nbr;
+  printf("%f", nbr);
   while (++x < dec)
     {
       nbr *= 10;
@@ -24,4 +27,9 @@ void	my_put_double(double nbr, int dec)
 	my_put_nbr((int)nbr);
       nbr -= (int)nbr;
     }
+}
+
+int     main()
+{
+  my_put_double(0.505, 6);
 }

@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Mon Jan  4 10:53:52 2016 Baptiste veyssiere
-** Last update Mon Jan  4 13:45:24 2016 nathan scutari
+** Last update Mon Jan  4 13:48:21 2016 Baptiste veyssiere
 */
 
 #include <torus.h>
@@ -112,6 +112,6 @@ int	main(int ac, char **av)
     return (my_perror("Usage : ./105torus opt a0 a1 a2 a3 a4 n\n", 84));
   if (check_args(av) == -1)
     return (my_perror("Syntax error\n", 84));
-  torus();
+  torus(av);
   return (0);
 }

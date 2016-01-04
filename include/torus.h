@@ -5,12 +5,27 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Mon Jan  4 10:56:14 2016 Baptiste veyssiere
-** Last update Mon Jan  4 10:58:52 2016 Baptiste veyssiere
+** Last update Mon Jan  4 14:10:59 2016 Baptiste veyssiere
 */
 
 #ifndef TORUS_H_
 # define TORUS_H_
 
 # include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+
+typedef struct
+{
+  double	a0;
+  double	a1;
+  double	a2;
+  double	a3;
+  double	a4;
+}		t_coeff;
+
+# ifndef ABS
+#  define ABS(x) ((x) < 0 ? -(x) : (x))
+# endif /* !ABS */
 
 #endif /* !TORUS_H_ */
