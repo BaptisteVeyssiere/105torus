@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Mon Jan  4 14:56:13 2016 nathan scutari
-** Last update Mon Jan  4 14:59:30 2016 nathan scutari
+** Last update Mon Jan  4 15:15:53 2016 nathan scutari
 */
 
 void	my_put_double(double nbr, int dec)
@@ -20,7 +20,8 @@ void	my_put_double(double nbr, int dec)
   while (++x < dec)
     {
       nbr *= 10;
-      my_put_nbr((int)nbr);
+      if (nbr > 0)
+	my_put_nbr((int)nbr);
       nbr -= (int)nbr;
     }
 }
