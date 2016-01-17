@@ -5,12 +5,12 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Mon Jan  4 10:55:22 2016 Baptiste veyssiere
-** Last update Sun Jan 17 16:33:25 2016 Baptiste veyssiere
+** Last update Sun Jan 17 17:22:16 2016 Baptiste veyssiere
 */
 
 #include <torus.h>
 
-void	bissection(t_coeff coeff, double epsilon, char *phrase)
+void	bissection(t_coeff coeff, double epsilon, char *phrase, int nbr)
 {
   double	a;
   double	b;
@@ -20,7 +20,8 @@ void	bissection(t_coeff coeff, double epsilon, char *phrase)
   b = 1;
   while (ABS(b - a) > epsilon)
     {
-      printf(phrase, (a + b) / 2);
+      if (printf(phrase, (a + b) / 2) == (7 + nbr))
+	phrase[strlen(phrase) - 2] = 'f';
       xm = (coeff.a0 + coeff.a1 * ((a + b) / 2) + coeff.a2 * pow(((a + b) / 2), 2) + coeff.a3 * pow(((a + b) / 2), 3) + coeff.a4 * pow(((a + b) / 2), 4)) * (coeff.a0 + coeff.a1 * a + coeff.a2 * pow(a, 2) + coeff.a3 * pow(a, 3) + coeff.a4 * pow(a, 4));
       if (xm < 0)
 	b = (a + b) / 2;
@@ -29,23 +30,25 @@ void	bissection(t_coeff coeff, double epsilon, char *phrase)
     }
 }
 
-void	newton(t_coeff coeff, double epsilon, char *phrase)
+void	newton(t_coeff coeff, double epsilon, char *phrase, int nbr)
 {
   double	x0;
 
   x0 = 0.5;
   printf(phrase, x0);
-  while (ABS((coeff.a0 + coeff.a1 * x0 + coeff.a2 * pow(x0, 2) + coeff.a3 * pow(x0, 3) + coeff.a4 * pow(x0, 4))) >= epsilon)
+  while (ABS((coeff.a0 + coeff.a1 * x0 + coeff.a2 * pow(x0, 2) + coeff.a3 * pow(x0, 3) + coeff.a4 * pow(x0, 4))) > epsilon)
     {
       x0 = x0 - ((coeff.a0 + coeff.a1 * x0 + coeff.a2 * pow(x0, 2) + coeff.a3 * pow(x0, 3) + coeff.a4 * pow(x0, 4)) / (coeff.a1 + 2 * coeff.a2 * x0 + 3 * coeff.a3 * pow(x0, 2) + 4 * coeff.a4 * pow(x0, 3)));
+      if (x0 / epsilon != 0)
+	phrase[strlen(phrase) - 2] = 'f';
       if (ABS((coeff.a0 + coeff.a1 * x0 + coeff.a2 * pow(x0, 2) + coeff.a3 * pow(x0, 3) + coeff.a4 * pow(x0, 4))) > epsilon)
-	printf(phrase, x0);
+	if (printf(phrase, x0) == (7 + nbr))
+	  phrase[strlen(phrase) - 2] = 'f';
     }
   printf(phrase, x0);
-
 }
 
-void	secante(t_coeff coeff, double epsilon, char *phrase)
+void	secante(t_coeff coeff, double epsilon, char *phrase, int nbr)
 {
   double x0;
   double x1;
@@ -63,7 +66,8 @@ void	secante(t_coeff coeff, double epsilon, char *phrase)
       x -= Px / ((Px - Px_1) / (x1 - x0));
       x0 = x1;
       x1 = x;
-      printf(phrase, x1);
+      if (printf(phrase, x1) == (7 + nbr))
+	phrase[strlen(phrase) - 2] = 'f';
     }
   printf(phrase, x1);
 }
@@ -90,10 +94,10 @@ int	torus(char **av)
   epsilon = pow(10, -atoi(av[7]));
   opt = atoi(av[1]);
   if (opt == 1)
-    bissection(coeff, epsilon, phrase);
+    bissection(coeff, epsilon, phrase, atoi(av[7]));
   else if (opt == 2)
-    newton(coeff, epsilon, phrase);
+    newton(coeff, epsilon, phrase, atoi(av[7]));
   else if (opt == 3)
-    secante(coeff, epsilon, phrase);
+    secante(coeff, epsilon, phrase, atoi(av[7]));
   return (0);
 }
