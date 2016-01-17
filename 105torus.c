@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Mon Jan  4 10:55:22 2016 Baptiste veyssiere
-** Last update Mon Jan  4 15:54:05 2016 Baptiste veyssiere
+** Last update Sun Jan 17 16:33:25 2016 Baptiste veyssiere
 */
 
 #include <torus.h>
@@ -35,12 +35,14 @@ void	newton(t_coeff coeff, double epsilon, char *phrase)
 
   x0 = 0.5;
   printf(phrase, x0);
-  while (ABS((coeff.a0 + coeff.a1 * x0 + coeff.a2 * pow(x0, 2) + coeff.a3 * pow(x0, 3) + coeff.a4 * pow(x0, 4))) > epsilon)
+  while (ABS((coeff.a0 + coeff.a1 * x0 + coeff.a2 * pow(x0, 2) + coeff.a3 * pow(x0, 3) + coeff.a4 * pow(x0, 4))) >= epsilon)
     {
       x0 = x0 - ((coeff.a0 + coeff.a1 * x0 + coeff.a2 * pow(x0, 2) + coeff.a3 * pow(x0, 3) + coeff.a4 * pow(x0, 4)) / (coeff.a1 + 2 * coeff.a2 * x0 + 3 * coeff.a3 * pow(x0, 2) + 4 * coeff.a4 * pow(x0, 3)));
       if (ABS((coeff.a0 + coeff.a1 * x0 + coeff.a2 * pow(x0, 2) + coeff.a3 * pow(x0, 3) + coeff.a4 * pow(x0, 4))) > epsilon)
 	printf(phrase, x0);
     }
+  printf(phrase, x0);
+
 }
 
 void	secante(t_coeff coeff, double epsilon, char *phrase)
@@ -53,7 +55,6 @@ void	secante(t_coeff coeff, double epsilon, char *phrase)
 
   x0 = 0;
   x1 = 1;
-  printf(phrase, x0);
   while (ABS((coeff.a0 + coeff.a1 * x1 + coeff.a2 * pow(x1, 2) + coeff.a3 * pow(x1, 3) + coeff.a4 * pow(x1, 4))) > epsilon)
     {
       x = x1;
@@ -62,9 +63,9 @@ void	secante(t_coeff coeff, double epsilon, char *phrase)
       x -= Px / ((Px - Px_1) / (x1 - x0));
       x0 = x1;
       x1 = x;
-      printf(phrase, x0);
+      printf(phrase, x1);
     }
-
+  printf(phrase, x1);
 }
 
 int	torus(char **av)
